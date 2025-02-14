@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Bar</title>
+    <style>
+        .image-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <label for="imageSelector1">Patty Selection:</label>
+    <select id="imageSelector1" onchange="toggleImage('patty', this.value)">
+        <option value="none">None</option>
+        <option value="show">Patty</option>
+    </select>
+    
+    <label for="imageSelector2">Bun Selection:</label>
+    <select id="imageSelector2" onchange="showBuns(this.value)">
+        <option value="none">None</option>
+        <option value="show">Bun</option>
+    </select>
+
+    <div id="top_bun" class="image-container">
+        <img src="./top_bun.png" alt="top_bun">
+    </div>
+    
+    <div id="patty" class="image-container">
+        <img src="./burger.png" alt="patty">
+    </div>
+
+    <div id="bottom_bun" class="image-container">
+        <img src="./bottom_bun.png" alt="bottom_bun">
+    </div>
+
+    <script>
+        function toggleImage(imageId, value) {
+            const imageDiv = document.getElementById(imageId);
+            if (value === "show") {
+                imageDiv.style.display = "block";
+            } else {
+                imageDiv.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        const buns = ["top_bun", "bottom_bun"];
+        function showBuns(value) {
+            for (let i = 0; i < Math.max(buns.length); i++) {
+                bun = buns[i];
+                console.log(bun);
+                //const imageDiv = document.getElementById(bun);
+                //console.log(imageDiv);
+                toggleImage(bun,value)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+.navbar {
+    display: grid;
+    grid-template-columns: .1fr .1fr;
+    grid-template-rows: 50px 50px;
+    padding: 0;
+    margin: auto;
+  
+  
+    justify-content: center;
+    align-items: center;
+  
+  
+    border: 1px gray dotted;
+  }
+
+  .navbar > div > a {
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .navbar > div {
+    height: 30px;
+    line-height: 30px;
+    background-color: lightgray;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: blue;
+    flex: 1 1 auto;
+    border: 1px purple solid;
+    border-radius: 10px;
+    text-align: center;
+  
+  
+    margin: 5px; 
+  }
+
+  .navbar > div:hover {
+    background-color: bisque;
+  }
+  
+  
