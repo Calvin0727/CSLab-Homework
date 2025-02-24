@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Bar</title>
+    <link rel="stylesheet" href="burger.css">
+    <style>
+        .image-container {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <label for="patty_selector">Patty Selection:</label>
+    <select id="patty_selector" onchange="toggleImage('patty', this.value)">
+        <option class="selection" value="none" data-price="0">None</option>
+        <option class="selection" value="show" data-price="3">Patty ($3.00)</option>
+    </select>
+    
+    <label for="bun_selector">Bun Selection:</label>
+    <select id="bun_selector" onchange="showBuns(this.value)">
+        <option class = "selection" value="none" data-price = "0">None</option>
+        <option class = "selection" value="show" data-price = "1.50">Bun ($1.50)</option>
+    </select>
+
+    <div id="blank" >
+        <img src="./blank.png" alt="blank">
+    </div>
+
+    <div id="top_bun" class="image-container">
+        <img src="./top_bun.png" alt="top_bun">
+    </div>
+
+    <div id="american_cheese" class="image-container">
+        <img src="./american.png" alt="swiss_cheese">
+    </div>
+
+    <div id="swiss_cheese" class="image-container">
+        <img src="./swiss.png" alt="american_cheese">
+    </div>
+
+    <div id="monterey_cheese" class="image-container">
+        <img src="./monterey.png" alt="monterey_cheese">
+    </div>
+    
+    
+    <div id="patty" class="image-container">
+        <img src="./burger.png" alt="patty">
+    </div>
+
+    <div id="bottom_bun" class="image-container">
+        <img src="./bottom_bun.png" alt="bottom_bun">
+    </div>
+
+    <script>
+        function toggleImage(imageId, value) {
+            const imageDiv = document.getElementById(imageId);
+            if (value == "show" || value == true) {
+                imageDiv.style.display = "block";
+            } else {
+                imageDiv.style.display = "none";
+            }
+        }
+    </script>
+
+    <script>
+        const buns = ["top_bun", "bottom_bun"];
+        function showBuns(value) {
+            for (let i = 0; i < Math.max(buns.length); i++) {
+                bun = buns[i];
+                console.log(bun);
+                //const imageDiv = document.getElementById(bun);
+                //console.log(imageDiv);
+                toggleImage(bun,value)
+            }
+        }
+    </script>
+
+    <label>
+        <input class = "option" type="checkbox" id="American" data-price="0.50" onclick="toggleImage('american_cheese', checked)" unchecked>
+        American Cheese ($0.50)
+    </label>
+    <label>
+        <input class = "option" type="checkbox" id="Swiss" data-price="0.50" onclick="toggleImage('swiss_cheese', checked)" unchecked>
+        Swiss Cheese ($0.50)
+    </label>
+    <label>
+        <input class = "option" type="checkbox" data-price="0.50" id="Monterey_Jack" onclick="toggleImage('monterey_cheese', checked)" unchecked>
+        Monterey Jack Cheese ($0.50)
+    </label>
+
+    <h3>Total Cost: $<span id="total-cost">0</span></h3>
+
+    <script>
+        function updateTotal() {
+            let total = 0;
+            
+            document.querySelectorAll('.option:checked').forEach(checkbox => {
+                total += parseFloat(checkbox.getAttribute('data-price'));
+            });
+            
+            let pattySelector = document.getElementById('patty_selector');
+            let selectedOption = pattySelector.options[pattySelector.selectedIndex];
+            total += parseFloat(selectedOption.getAttribute('data-price'));
+
+            let bunSelector = document.getElementById('bun_selector');
+            let bunOption = bunSelector.options[bunSelector.selectedIndex];
+            total += parseFloat(bunOption.getAttribute('data-price'));
+            
+            document.getElementById('total-cost').textContent = total.toFixed(2);
+        }
+        
+        document.querySelectorAll('.option').forEach(checkbox => {
+            checkbox.addEventListener('change', updateTotal);
+        });
+
+
+       document.getElementById('patty_selector').addEventListener('change', updateTotal);
+       document.getElementById('bun_selector').addEventListener('change', updateTotal);
+       
+    </script>
+
+<div class="navbar">
+    <div class="navpage1"><a href="burgerhome.html">Home</a></div>
+    <div class="navpage2"><a href="burgerbuild.html">Selection</a></div>
+    <div class="navpage3"><a href="burgerout.html">Checkout</a></div>
+  </div>
+</body>
+</html>
